@@ -43,8 +43,14 @@ public class SchuelerBL {
         while((line = br.readLine())!= null)
         {
             String[] parts = line.split(";");
-            
-            add(new Schueler(parts[0], LocalDate.parse(parts[1])));
+            try
+            {
+                add(new Schueler(parts[0], LocalDate.parse(parts[1])));
+            }
+            catch(Exception e)
+            {
+                e.printStackTrace();
+            }
         }
        
     }
