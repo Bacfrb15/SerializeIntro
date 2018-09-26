@@ -5,9 +5,12 @@
  */
 package ex003;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 /**
@@ -33,9 +36,17 @@ public class SchuelerBL {
             bw.newLine();
         }
     }
-    public void load(File f)
+    public void load(File f) throws Exception
     {
-        
+        BufferedReader br = new BufferedReader(new FileReader(f));
+        String line;
+        while((line = br.readLine())!= null)
+        {
+            String[] parts = line.split(";");
+            
+            add(new Schueler(parts[0], LocalDate.parse(parts[1])));
+        }
+       
     }
     
     public static void main(String[] args) 
